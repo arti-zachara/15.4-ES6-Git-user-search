@@ -41,7 +41,7 @@ var App = function (_React$Component) {
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        return _this2.setState({ users: responseJson.items });
+        _this2.setState({ users: responseJson.items });
       });
     }
   }, {
@@ -50,26 +50,40 @@ var App = function (_React$Component) {
       var _this3 = this;
 
       return React.createElement(
-        "div",
-        null,
+        "section",
+        { className: "container" },
         React.createElement(
-          "form",
-          { onSubmit: function onSubmit(event) {
-              return _this3.onSubmit(event);
-            } },
+          "div",
+          { className: "search" },
           React.createElement(
-            "label",
-            { htmlFor: "searchText" },
-            "Search by user name"
+            "header",
+            null,
+            React.createElement("i", { className: "fab fa-github" }),
+            React.createElement(
+              "h1",
+              null,
+              "GitHub user search"
+            )
           ),
-          React.createElement("input", {
-            type: "text",
-            id: "searchText",
-            onChange: function onChange(event) {
-              return _this3.onChangeHandle(event);
-            },
-            value: this.state.searchText
-          })
+          React.createElement(
+            "form",
+            { onSubmit: function onSubmit(event) {
+                return _this3.onSubmit(event);
+              } },
+            React.createElement(
+              "label",
+              { htmlFor: "searchText" },
+              "Search by user name"
+            ),
+            React.createElement("input", {
+              type: "text",
+              id: "searchText",
+              onChange: function onChange(event) {
+                return _this3.onChangeHandle(event);
+              },
+              value: this.state.searchText
+            })
+          )
         ),
         React.createElement(UsersList, { users: this.state.users })
       );
@@ -125,7 +139,7 @@ var User = function (_React$Component3) {
     value: function render() {
       return React.createElement(
         "div",
-        null,
+        { className: "user" },
         React.createElement("img", { src: this.props.user.avatar_url, style: { maxWidth: "100px" } }),
         React.createElement(
           "a",

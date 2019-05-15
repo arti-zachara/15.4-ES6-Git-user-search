@@ -20,23 +20,32 @@ class App extends React.Component {
     console.log(url);
     fetch(url)
       .then(response => response.json())
-      .then(responseJson => this.setState({ users: responseJson.items }));
+      .then(responseJson => {
+        this.setState({ users: responseJson.items });
+      });
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={event => this.onSubmit(event)}>
-          <label htmlFor="searchText">Search by user name</label>
-          <input
-            type="text"
-            id="searchText"
-            onChange={event => this.onChangeHandle(event)}
-            value={this.state.searchText}
-          />
-        </form>
+      <section className="container">
+        <div className="search">
+          <header>
+            <i className="fab fa-github" />
+            <h1>GitHub user search</h1>
+          </header>
+
+          <form onSubmit={event => this.onSubmit(event)}>
+            <label htmlFor="searchText">Search by user name</label>
+            <input
+              type="text"
+              id="searchText"
+              onChange={event => this.onChangeHandle(event)}
+              value={this.state.searchText}
+            />
+          </form>
+        </div>
         <UsersList users={this.state.users} />
-      </div>
+      </section>
     );
   }
 }
@@ -56,7 +65,7 @@ class UsersList extends React.Component {
 class User extends React.Component {
   render() {
     return (
-      <div>
+      <div className="user">
         <img src={this.props.user.avatar_url} style={{ maxWidth: "100px" }} />
         <a href={this.props.user.html_url} target="_blank">
           {this.props.user.login}
